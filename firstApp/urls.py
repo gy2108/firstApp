@@ -27,4 +27,5 @@ urlpatterns = [
     path('deleteTodo/<int:todo_id>/',deleteTodo),
     path('blog/' , home , name="blog-home"),
     path('about/', about , name="blog-about"),
+    path('', home , name="blog-home"),
 ]
