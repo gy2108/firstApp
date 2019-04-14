@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from hello.views import myView
 from todo.views import todoView, addTodo, deleteTodo
-from blog.views import about,home
+from blog.views import about,home,PostListView,PostDetailView,PostCreateView, PostUpdateView
 from users import views as users_view
 from django.contrib.auth import views as auth_views
 from django.conf import settings
@@ -34,9 +34,12 @@ urlpatterns = [
     path('todo/',todoView),
     path('addTodo/',addTodo),
     path('deleteTodo/<int:todo_id>/',deleteTodo),
-    path('blog/' , home , name="blog-home"),
+    path('blog/' , PostListView.as_view() , name="blog-home"),
+    path('post/<int:pk>/' , PostDetailView.as_view() , name="post-detail"),
+    path('post/<int:pk>/update/', PostUpdateView.as_view() , name="post-update"),
+    path('post/new/' , PostCreateView.as_view() , name='psot-create'),
     path('about/', about , name="blog-about"),
-    path('', home , name="blog-home"),
+    path('', PostListView.as_view() , name="blog-home"),
 ]
 
 if settings.DEBUG:
